@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IMPORTANT: Update this title for each project -->
+    <title>Project: Your Project Name | Ruvenesh Magandaran</title>
+    
+    <!-- These links MUST be the same as in index.html to get the same styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- The path to the CSS file is now one level up (../) -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- ======================================================= -->
+    <!--     HEADER - Copied from index.html, paths updated    -->
+    <!-- ======================================================= -->
+    <header>
+        <nav class="container">
+            <!-- This link now goes back to the homepage -->
+            <a href="../index.html" class="logo">RM</a>
+            <ul>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../index.html#education">Education</a></li>
+                <li><a href="../index.html#projects">Projects</a></li>
+                <li><a href="../index.html#certifications">Certifications</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ======================================================= -->
+    <!--              MAIN PROJECT ARTICLE CONTENT               -->
+    <!-- ======================================================= -->
+    <main class="project-article">
+        <div class="container">
+            
+            <!-- --- Project Header --- -->
+            <header class="article-header">
+                <!-- TODO: Fill in your project title and subtitle -->
+                <h1>CampusRide E-Hailing App</h1>
+                <p class="subtitle">A full-stack mobile application for university students, built from the ground up to provide a safe and affordable community-focused transportation solution.</p>
+            </header>
+
+            <!-- --- Main Image or Video --- -->
+            <!-- Use a high-quality screenshot, or even better, a GIF/video! -->
+            <img src="../images/campusride-detail.png" alt="A detailed view of the CampusRide App" class="article-main-image">
+
+            <!-- --- Main Content Layout (Article on Left, Sidebar on Right) --- -->
+            <div class="article-main-content">
+                
+                <!-- --- Left Side: The Main Story --- -->
+                <article class="content-body">
+                    
+                    <!-- MODULE: Paragraphs -->
+                    <h2>The Challenge</h2>
+                    <p>University students often face high costs and limited availability with commercial ride-sharing services. The goal was to create a dedicated, affordable, and community-focused e-hailing platform for students within and around the campus area, aiming to replace the popular but discontinued "Student Grab" service.</p>
+                    
+                    <h2>My Solution</h2>
+                    <p>I developed a complete, full-stack e-hailing application from scratch. The front-end was built using Flutter, allowing for a single codebase for both Android and iOS. For the backend, I utilized Firebase for its real-time database capabilities, user authentication, and cloud functions, which enabled features like live driver tracking and secure data handling.</p>
+                    <hr>
+
+                    <!-- MODULE: Bulleted List (for features, etc.) -->
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><strong>Real-time GPS Driver Tracking:</strong> Integrated Google Maps API to show live vehicle movement for both passengers and drivers.</li>
+                        <li><strong>Secure Authentication & Profiles:</strong> Firebase Auth for secure email/password and social logins, with distinct profiles for drivers and riders.</li>
+                        <li><strong>In-App Ride Booking & Management:</strong> A seamless flow from setting pickup/destination to ride completion.</li>
+                        <li><strong>Fare Calculation:</strong> A simple algorithm based on distance and a base fare to provide transparent pricing.</li>
+                    </ul>
+                    <hr>
+
+                    <!-- MODULE: Image Gallery (for multiple screenshots) -->
+                    <h2>Visual Showcase</h2>
+                    <p>Here are some additional screenshots showcasing the user interface and key screens of the application.</p>
+                    <div class="image-grid">
+                        <img src="../images/screenshot-1.png" alt="Description of screenshot 1">
+                        <img src="../images/screenshot-2.png" alt="Description of screenshot 2">
+                    </div>
+                    <hr>
+                    
+                    <!-- MODULE: Code Snippet -->
+                    <h2>Code Highlight</h2>
+                    <p>Here is a snippet of Dart code from the Flutter project, demonstrating the function to fetch a driver's live location from Firestore and update the map marker.</p>
+                    <pre class="code-block"><code>
+// Example Flutter (Dart) code
+StreamSubscription<DocumentSnapshot>? driverLocationSubscription;
+
+void _getDriverLocation(String driverId) {
+  driverLocationSubscription = FirebaseFirestore.instance
+      .collection('drivers')
+      .doc(driverId)
+      .snapshots()
+      .listen((snapshot) {
+        if (snapshot.exists) {
+          GeoPoint pos = snapshot.data()!['currentLocation'];
+          LatLng driverLatLng = LatLng(pos.latitude, pos.longitude);
+          _updateMarker(driverLatLng);
+        }
+      });
+}
+                    </code></pre>
+                    <hr>
+
+                    <!-- MODULE: Blockquote (for key takeaways) -->
+                    <h2>What I Learned</h2>
+                    <p>This project was an incredible learning experience in full-stack development and project management. The key takeaways were:</p>
+                    <blockquote>
+                        Managing real-time data streams with Firebase is powerful but requires careful state management on the client-side to prevent memory leaks and ensure UI consistency.
+                    </blockquote>
+                    <p>Additionally, I gained deep experience in integrating third-party APIs like Google Maps and learned the importance of designing a scalable database schema from the very beginning.</p>
+
+                </article>
+
+                <!-- --- Right Side: The Sidebar --- -->
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Tech Stack</h3>
+                        <div class="tech-stack">
+                            <span>Flutter</span>
+                            <span>Dart</span>
+                            <span>Firebase</span>
+                            <span>Firestore</span>
+                            <span>Google Maps API</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>Project Info</h3>
+                        <ul class="project-meta">
+                            <li><strong>Role:</strong> Solo Developer</li>
+                            <li><strong>Type:</strong> Final Year Project</li>
+                            <li><strong>Duration:</strong> 6 Months</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3>Links</h3>
+                        <ul class="project-links">
+                            <!-- TODO: Add your links here. Use # if a link is not available. -->
+                            <li><a href="#" target="_blank">View Live Demo</a></li>
+                            <li><a href="#" target="_blank">View on GitHub</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    
+    <!-- ======================================================= -->
+    <!--      FOOTER - Copied from index.html, paths updated     -->
+    <!-- ======================================================= -->
+    <footer>
+        <div class="container">
+            <p>© 2024 Ruvenesh Magandaran. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
