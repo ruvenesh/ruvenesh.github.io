@@ -167,4 +167,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- 6. Cryptographic / Matrix Rain Canvas ---
+    const canvas = document.getElementById('crypt-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+        
+        // Resize listener
+        window.addEventListener('resize', () => {
+            width = canvas.width = canvas.offsetWidth;
+            height = canvas.height = canvas.offsetHeight;
+            initDrops();
+        });
+        
+        const chars = '0123456789ABCDEFλ§μøXYZ*+_-?=[]'.split('');
+        const fontSize = 14;
+        let columns = Math.floor(width / fontSize);
+        let drops = [];
+
+        function initDrops() {
+            columns = Math.floor(width / fontSize);
+            drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * -100;
+            }
+        }
+        
+        initDrops();
+        
+        function drawMatrix() {
+            // Draw a very transparent black background to create a trail effect
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.08)';
+            ctx.fillRect(0, 0, width, height);
+            
+            // Loop over the drops
+            for (let i = 0; i < drops.length; i++) {
+                // Pick a random character
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                
+                // Set green or cyan color randomly for matrix vibe
+                ctx.fillStyle = Math.random() > 0.3 ? '#00ff41' : '#00f0ff';
+                ctx.font = `${fontSize}px var(--font-mono)`;
+                
+                // Draw character
+                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                
+                // If drop reaches the bottom, reset to top randomly
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                // Increment y-coordinate
+                drops[i] += 0.5; // Controls the speed of the rain
+            }
+        }
+        
+        // Run animation loop
+        setInterval(drawMatrix, 33); // ~30 fps
+    }
+
 });
